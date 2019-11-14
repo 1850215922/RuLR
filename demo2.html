@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第九课第二题</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px auto;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<canvas id="canvas">
+			你的浏览器不支持canvas，请升级浏览器
+		</canvas>
+	</center>
+
+	<script type="text/javascript">
+		(function(){
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext('2d');
+			canvas.width = 900;
+			canvas.height = 600;
+			canvas.style.border = "1px solid #000";
+			canvas.onmousedown = function(e){
+				var x = e.clientX - canvas.getBoundingClientRect().left;
+				var y = e.clientY - canvas.getBoundingClientRect().top;
+				context.beginPath();
+				context.moveTo(x,y);
+				canvas.onmousemove = function(){
+					var x = event.clientX - canvas.getBoundingClientRect().left;
+					var y = event.clientY - canvas.getBoundingClientRect().top;
+					context.lineTo(x,y);
+					context.stroke();
+				};
+				canvas.onmouseup = function(event){
+					canvas.onmousemove = null;
+				};
+			};
+		}());
+	</script>
+</body>
+</html>
